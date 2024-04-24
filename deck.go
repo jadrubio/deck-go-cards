@@ -4,8 +4,21 @@ import "fmt"
 
 type deck []string
 
+func newDeck() deck {
+	suites := []string{"Hearts", "Diamonds", "Spades", "Clubs"}
+	faces := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+
+	cards := deck{}
+	for _, s := range suites {
+		for _, f := range faces {
+			cards = append(cards, f+" of "+s)
+		}
+	}
+	return cards
+}
+
 func (d deck) print() {
-	for i, card := range d {
-		fmt.Println(i, card)
+	for _, card := range d {
+		fmt.Println(card)
 	}
 }
