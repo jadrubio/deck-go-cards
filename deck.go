@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 )
@@ -43,6 +44,13 @@ func (d deck) print() {
 
 func (d deck) saveToFile(filename string) error {
 	return os.WriteFile(filename, d.toByteSlice(), 0644)
+}
+
+func (d deck) shuffle() {
+	for i := range d {
+		j := rand.Intn(len(d) - 1)
+		d[i], d[j] = d[j], d[i]
+	}
 }
 
 func (d deck) toByteSlice() []byte {
